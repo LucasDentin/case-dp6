@@ -46,7 +46,7 @@
         $('form.contato :input').not(':last').on('focus', function () {
             gtag('event', 'form_start', {
                 'page_location': window.location.href, 
-                'form_id': this.id, // [atributo de ID HTML do elemento DOM <form>]
+                'form_id': this.id , // [atributo de ID HTML do elemento DOM <form>]
                 'form_name': $(this).parent().text().trim(), //[atributo de nome HTML do elemento DOM <form>]
                 'form_destination': this.formAction // [URL para onde o formulario esta sendo enviado]
             });
@@ -54,7 +54,7 @@
         $('form.contato').on('submit', function (event) {
             gtag('event', 'form_submit', {
                 'page_location': window.location.href,
-                'form_id': this.id,
+                'form_id': this.id || "formSemId",
                 'form_destination': this.action,
                 'form_name': document.querySelector('#contato').outerText, 
                 'form_submit_text': $(this).find(':submit').text()
@@ -64,7 +64,7 @@
             if ($('body').hasClass('sobre') && $('body').hasClass('lightbox-open')){        
                 gtag('event', 'view_form_success', {
                     'page_location': window.location.href,
-                    'form_id': document.querySelector('.contato').id,
+                    'form_id': document.querySelector('.contato').id || "formSemId",
                     'form_name': document.querySelector('#contato').outerText
                 });
                 clearInterval(interval);
