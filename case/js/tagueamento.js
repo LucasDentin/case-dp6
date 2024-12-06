@@ -54,18 +54,18 @@
         $('form.contato').on('submit', function (event) {
             gtag('event', 'form_submit', {
                 'page_location': window.location.href,
-                'form_id': this.id || "formSemId",
-                'form_destination': this.action,
-                'form_name': document.querySelector('#contato').outerText, 
-                'form_submit_text': $(this).find(':submit').text()
+                'form_id': this.id || "formSemId", // [atributo de ID HTML do elemento DOM <form>]
+                'form_destination': this.action, // [URL para onde o formulario esta sendo enviado]
+                'form_name': document.querySelector('#contato').outerText, //[atributo de nome HTML do elemento DOM <form>]
+                'form_submit_text': $(this).find(':submit').text() // [texto do botão de envio]
             });
         });
         var interval = setInterval(function () {
             if ($('body').hasClass('sobre') && $('body').hasClass('lightbox-open')){        
                 gtag('event', 'view_form_success', {
                     'page_location': window.location.href,
-                    'form_id': document.querySelector('.contato').id || "formSemId",
-                    'form_name': document.querySelector('#contato').outerText
+                    'form_id': document.querySelector('.contato').id || "formSemId",// [atributo de ID HTML do elemento DOM <form>]
+                    'form_name': document.querySelector('#contato').outerText //[atributo de nome HTML do elemento DOM <form>]
                 });
                 clearInterval(interval);
             }
