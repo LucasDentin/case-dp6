@@ -4,13 +4,6 @@
 // O ambiente dispoe da jQuery 3.5.1, entao caso deseje, podera utiliza-la
 // para fazer a sua coleta.
 // Caso tenha alguma duvida sobre o case, nao hesite em entrar em contato.
-
-//(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-/*new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KCQS2FJ2') */
-
 (function () {
     // Carregar o script gtag.js
     var gtmScript = document.createElement('script');
@@ -25,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         window.gtag = gtag; // Disponibiliza a funcao globalmente
         gtag('js', new Date());
-        gtag('config', 'G-LCRM6M6E62', { 'send_page_view': true });
+        gtag('config', 'G-096NHNN8Q2', { 'send_page_view': true });
         // Optei por usar jQuery ja que podemos, poderia usar o mutationObserver para o evento de view_form_sucess
         // Eventos de click
         $(document).on('click', '.menu-lista-contato', function () {
@@ -50,11 +43,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             });
         });
         // Eventos de formulario
-        $('form.contato :input:not(:last-child)').on('focus', function () {
+        $('form.contato :input').not(':last').on('focus', function () {
             gtag('event', 'form_start', {
                 'page_location': window.location.href, 
                 'form_id': this.id, // [atributo de ID HTML do elemento DOM <form>]
-                'form_name': $(this).parent().text() , //[atributo de nome HTML do elemento DOM <form>]
+                'form_name': $(this).parent().text().trim(), //[atributo de nome HTML do elemento DOM <form>]
                 'form_destination': this.formAction // [URL para onde o formulario esta sendo enviado]
             });
         });
@@ -63,16 +56,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'page_location': window.location.href,
                 'form_id': this.id,
                 'form_destination': this.action,
-                'form_name': document.querySelector('#contato').innerText, 
+                'form_name': document.querySelector('#contato').outerText, 
                 'form_submit_text': $(this).find(':submit').text()
             });
         });
         var interval = setInterval(function () {
-            if ($('body').hasClass('lightbox-open')) {        
+            if ($('body').hasClass('sobre') && $('body').hasClass('lightbox-open')){        
                 gtag('event', 'view_form_success', {
                     'page_location': window.location.href,
                     'form_id': document.querySelector('.contato').id,
-                    'form_name': document.querySelector('#contato').innerText
+                    'form_name': document.querySelector('#contato').outerText
                 });
                 clearInterval(interval);
             }
